@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnglishVR Kids - Belajar Bahasa Inggris dengan VR</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#4F86F7',secondary:'#FFD166'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Nunito', sans-serif;
+        }
+        .hero-section {
+            background-image: url('https://readdy.ai/api/search-image?query=A%20vibrant%2C%20colorful%20cartoon%20scene%20showing%20diverse%20children%20learning%20English%20with%20VR%20headsets%20in%20a%20classroom.%20The%20background%20is%20bright%20and%20cheerful%20with%20educational%20elements%20like%20alphabet%20letters%2C%20numbers%2C%20and%20simple%20English%20words%20floating%20around.%20The%20left%20side%20has%20a%20clean%2C%20gradient%20blue%20background%20that%20smoothly%20transitions%20to%20the%20illustration%20on%20the%20right.%20The%20overall%20style%20is%20friendly%2C%20educational%2C%20and%20appealing%20to%20elementary%20school%20children.&width=1600&height=800&seq=hero123&orientation=landscape');
+            background-size: cover;
+            background-position: center right;
+        }
+        .progress-bar {
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 6px;
+        }
+        .badge {
+            width: 80px;
+            height: 80px;
+        }
+        input:focus, button:focus {
+            outline: none;
+        }
+        .custom-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #4F86F7;
+            border-radius: 4px;
+            margin-right: 8px;
+            position: relative;
+            cursor: pointer;
+        }
+        .custom-checkbox:checked {
+            background-color: #4F86F7;
+        }
+        .custom-checkbox:checked::after {
+            content: '✓';
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 12px;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 24px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #4F86F7;
+        }
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="#" class="text-3xl font-['Pacifico'] text-primary mr-8">EnglishVR</a>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="#" class="flex items-center text-gray-700 hover:text-primary transition-colors">
+                        <div class="w-6 h-6 flex items-center justify-center mr-2">
+                            <i class="ri-home-5-line"></i>
+                        </div>
+                        <span>Beranda</span>
+                    </a>
+                    <a href="#modules" class="flex items-center text-gray-700 hover:text-primary transition-colors">
+                        <div class="w-6 h-6 flex items-center justify-center mr-2">
+                            <i class="ri-book-open-line"></i>
+                        </div>
+                        <span>Modul</span>
+                    </a>
+                    <a href="#vr" class="flex items-center text-gray-700 hover:text-primary transition-colors">
+                        <div class="w-6 h-6 flex items-center justify-center mr-2">
+                            <i class="ri-vr-line"></i>
+                        </div>
+                        <span>VR</span>
+                    </a>
+                    <a href="#progress" class="flex items-center text-gray-700 hover:text-primary transition-colors">
+                        <div class="w-6 h-6 flex items-center justify-center mr-2">
+                            <i class="ri-line-chart-line"></i>
+                        </div>
+                        <span>Progress</span>
+                    </a>
+                </nav>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="relative">
+                    <button class="flex items-center text-gray-700 hover:text-primary transition-colors">
+                        <div class="w-6 h-6 flex items-center justify-center mr-1">
+                            <i class="ri-global-line"></i>
+                        </div>
+                        <span class="mr-1">ID</span>
+                        <div class="w-4 h-4 flex items-center justify-center">
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                    </button>
+                </div>
+                <button class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-button whitespace-nowrap transition-colors">Masuk</button>
+                <button class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-button whitespace-nowrap transition-colors">Daftar</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section w-full min-h-[600px] flex items-center">
+        <div class="container mx-auto px-4 py-16 w-full">
+            <div class="max-w-2xl bg-white/90 backdrop-blur-sm p-8 rounded-xl">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Belajar Bahasa Inggris Lebih Seru dengan VR!</h1>
+                <p class="text-lg text-gray-600 mb-8">Platform pembelajaran interaktif pertama di Indonesia yang menggabungkan teknologi Virtual Reality untuk membantu anak-anak SD belajar bahasa Inggris dengan cara yang menyenangkan.</p>
+                <div class="flex flex-wrap gap-4">
+                    <button class="bg-primary hover:bg-primary/90 text-white px-6 py-3 text-lg rounded-button whitespace-nowrap transition-colors flex items-center">
+                        <span>Mulai Belajar</span>
+                        <div class="w-5 h-5 flex items-center justify-center ml-2">
+                            <i class="ri-arrow-right-line"></i>
+                        </div>
+                    </button>
+                    <button class="bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 px-6 py-3 text-lg rounded-button whitespace-nowrap transition-colors flex items-center">
+                        <div class="w-5 h-5 flex items-center justify-center mr-2">
+                            <i class="ri-play-circle-line"></i>
+                        </div>
+                        <span>Lihat Demo</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Fitur Utama Kami</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Kombinasi sempurna antara pembelajaran tradisional dan teknologi VR untuk pengalaman belajar bahasa Inggris yang optimal</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-16 h-16 flex items-center justify-center bg-blue-100 text-primary rounded-full mb-6">
+                        <i class="ri-book-open-line ri-2x"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Modul Pembelajaran</h3>
+                    <p class="text-gray-600 mb-6">Materi pembelajaran interaktif dengan kombinasi teks, gambar, audio, dan video yang dirancang khusus untuk anak SD.</p>
+                    <a href="#modules" class="text-primary hover:text-primary/80 font-medium flex items-center">
+                        <span>Pelajari Lebih Lanjut</span>
+                        <div class="w-5 h-5 flex items-center justify-center ml-1">
+                            <i class="ri-arrow-right-line"></i>
+                        </div>
+                    </a>
+                </div>
+                <!-- Feature 2 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-16 h-16 flex items-center justify-center bg-yellow-100 text-yellow-600 rounded-full mb-6">
+                        <i class="ri-vr-line ri-2x"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Simulasi VR</h3>
+                    <p class="text-gray-600 mb-6">Berlatih bahasa Inggris dalam lingkungan virtual yang realistis seperti pasar, kelas, dan taman bermain.</p>
+                    <a href="#vr" class="text-primary hover:text-primary/80 font-medium flex items-center">
+                        <span>Pelajari Lebih Lanjut</span>
+                        <div class="w-5 h-5 flex items-center justify-center ml-1">
+                            <i class="ri-arrow-right-line"></i>
+                        </div>
+                    </a>
+                </div>
+                <!-- Feature 3 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-16 h-16 flex items-center justify-center bg-green-100 text-green-600 rounded-full mb-6">
+                        <i class="ri-line-chart-line ri-2x"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Progress Tracking</h3>
+                    <p class="text-gray-600 mb-6">Pantau perkembangan belajar dengan dashboard yang informatif dan sistem penghargaan yang memotivasi.</p>
+                    <a href="#progress" class="text-primary hover:text-primary/80 font-medium flex items-center">
+                        <span>Pelajari Lebih Lanjut</span>
+                        <div class="w-5 h-5 flex items-center justify-center ml-1">
+                            <i class="ri-arrow-right-line"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modules Section -->
+    <section id="modules" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Modul Pembelajaran</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Materi pembelajaran yang dirancang khusus untuk anak SD dengan pendekatan yang menyenangkan</p>
+            </div>
+            
+            <!-- Filter -->
+            <div class="flex flex-wrap gap-4 mb-8 justify-center">
+                <div class="bg-white rounded-full px-1 py-1 flex shadow-sm">
+                    <button class="px-4 py-2 rounded-full bg-primary text-white whitespace-nowrap">Semua</button>
+                    <button class="px-4 py-2 rounded-full text-gray-700 hover:bg-gray-100 whitespace-nowrap">Pemula</button>
+                    <button class="px-4 py-2 rounded-full text-gray-700 hover:bg-gray-100 whitespace-nowrap">Menengah</button>
+                    <button class="px-4 py-2 rounded-full text-gray-700 hover:bg-gray-100 whitespace-nowrap">Lanjutan</button>
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <i class="ri-search-line text-gray-400"></i>
+                    </div>
+                    <input type="text" placeholder="Cari modul..." class="pl-10 pr-4 py-2 border-none bg-white rounded-full shadow-sm focus:ring-2 focus:ring-primary/20">
+                </div>
+            </div>
+            
+            <!-- Modules Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Module 1 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://readdy.ai/api/search-image?query=Colorful%20cartoon%20illustration%20of%20numbers%201%20to%2010%20with%20cute%20animals%20representing%20each%20number.%20The%20image%20has%20a%20clean%2C%20educational%20style%20suitable%20for%20elementary%20school%20children%20learning%20English%20numbers.%20Each%20number%20is%20clearly%20visible%20with%20corresponding%20animals%20and%20English%20words.%20The%20background%20is%20simple%20and%20bright%20to%20focus%20on%20the%20educational%20content.&width=400&height=300&seq=mod1&orientation=landscape" alt="Numbers Module" class="w-full h-full object-cover object-top">
+                        <div class="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">Pemula</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-lg font-bold text-gray-800">Angka & Bilangan</h3>
+                            <div class="flex space-x-1">
+                                <div class="w-4 h-4 flex items-center justify-center text-yellow-500">
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                                <span class="text-sm text-gray-600">4.8</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Belajar mengenal angka 1-100 dalam bahasa Inggris dengan cara yang menyenangkan.</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-600">Progress</span>
+                                <span class="text-primary font-medium">75%</span>
+                            </div>
+                            <div class="progress-bar bg-gray-200">
+                                <div class="progress-fill bg-primary" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <button class="w-full bg-primary hover:bg-primary/90 text-white py-2 rounded-button whitespace-nowrap transition-colors">Lanjutkan</button>
+                    </div>
+                </div>
+                
+                <!-- Module 2 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://readdy.ai/api/search-image?query=Colorful%20cartoon%20illustration%20showing%20various%20animals%20with%20their%20English%20names%20clearly%20labeled.%20The%20image%20includes%20common%20animals%20like%20cat%2C%20dog%2C%20elephant%2C%20lion%2C%20bird%2C%20and%20fish%20in%20a%20playful%20educational%20style.%20The%20background%20is%20simple%20and%20bright%20to%20highlight%20the%20animals.%20The%20illustration%20is%20designed%20for%20elementary%20school%20children%20learning%20English%20vocabulary%20about%20animals.&width=400&height=300&seq=mod2&orientation=landscape" alt="Animals Module" class="w-full h-full object-cover object-top">
+                        <div class="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">Pemula</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-lg font-bold text-gray-800">Nama Hewan</h3>
+                            <div class="flex space-x-1">
+                                <div class="w-4 h-4 flex items-center justify-center text-yellow-500">
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                                <span class="text-sm text-gray-600">4.9</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Mengenal berbagai jenis hewan dalam bahasa Inggris dengan gambar dan suara.</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-600">Progress</span>
+                                <span class="text-primary font-medium">40%</span>
+                            </div>
+                            <div class="progress-bar bg-gray-200">
+                                <div class="progress-fill bg-primary" style="width: 40%"></div>
+                            </div>
+                        </div>
+                        <button class="w-full bg-primary hover:bg-primary/90 text-white py-2 rounded-button whitespace-nowrap transition-colors">Lanjutkan</button>
+                    </div>
+                </div>
+                
+                <!-- Module 3 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://readdy.ai/api/search-image?query=Colorful%20cartoon%20illustration%20of%20a%20rainbow%20with%20all%20colors%20clearly%20labeled%20in%20English%20%28red%2C%20orange%2C%20yellow%2C%20green%2C%20blue%2C%20indigo%2C%20violet%29.%20The%20image%20also%20includes%20various%20colored%20objects%20like%20a%20red%20apple%2C%20orange%20carrot%2C%20yellow%20sun%2C%20green%20leaf%2C%20blue%20sky%2C%20and%20purple%20grapes.%20The%20background%20is%20simple%20and%20bright%2C%20designed%20for%20elementary%20school%20children%20learning%20English%20color%20vocabulary.&width=400&height=300&seq=mod3&orientation=landscape" alt="Colors Module" class="w-full h-full object-cover object-top">
+                        <div class="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">Pemula</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-lg font-bold text-gray-800">Warna</h3>
+                            <div class="flex space-x-1">
+                                <div class="w-4 h-4 flex items-center justify-center text-yellow-500">
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                                <span class="text-sm text-gray-600">4.7</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Belajar nama-nama warna dalam bahasa Inggris dengan contoh benda sehari-hari.</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-600">Progress</span>
+                                <span class="text-gray-600 font-medium">0%</span>
+                            </div>
+                            <div class="progress-bar bg-gray-200">
+                                <div class="progress-fill bg-primary" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <button class="w-full bg-primary hover:bg-primary/90 text-white py-2 rounded-button whitespace-nowrap transition-colors">Mulai</button>
+                    </div>
+                </div>
+                
+                <!-- Module 4 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://readdy.ai/api/search-image?query=Colorful%20cartoon%20illustration%20showing%20family%20members%20with%20their%20English%20labels%20%28father%2C%20mother%2C%20brother%2C%20sister%2C%20grandfather%2C%20grandmother%29.%20The%20image%20depicts%20a%20happy%20multi-generational%20family%20in%20a%20home%20setting.%20The%20illustration%20style%20is%20friendly%20and%20educational%2C%20designed%20for%20elementary%20school%20children%20learning%20English%20vocabulary%20about%20family%20members.%20The%20background%20is%20simple%20and%20bright%20to%20focus%20on%20the%20characters%20and%20labels.&width=400&height=300&seq=mod4&orientation=landscape" alt="Family Module" class="w-full h-full object-cover object-top">
+                        <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">Menengah</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-lg font-bold text-gray-800">Keluarga</h3>
+                            <div class="flex space-x-1">
+                                <div class="w-4 h-4 flex items-center justify-center text-yellow-500">
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                                <span class="text-sm text-gray-600">4.6</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Belajar menyebutkan anggota keluarga dan hubungan kekerabatan dalam bahasa Inggris.</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-600">Progress</span>
+                                <span class="text-gray-600 font-medium">0%</span>
+                            </div>
+                            <div class="progress-bar bg-gray-200">
+                                <div class="progress-fill bg-primary" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <button class="w-full bg-primary hover:bg-primary/90 text-white py-2 rounded-button whitespace-nowrap transition-colors">Mulai</button>
+                    </div>
+                </div>
+                
+                <!-- Module 5 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://readdy.ai/api/search-image?query=Colorful%20cartoon%20illustration%20showing%20various%20fruits%20with%20their%20English%20names%20clearly%20labeled%20%28apple%2C%20banana%2C%20orange%2C%20grape%2C%20strawberry%2C%20watermelon%29.%20The%20image%20has%20a%20clean%2C%20educational%20style%20suitable%20for%20elementary%20school%20children%20learning%20English%20vocabulary%20about%20fruits.%20Each%20fruit%20is%20realistically%20drawn%20but%20in%20a%20cartoon%20style%20with%20vibrant%20colors.%20The%20background%20is%20simple%20and%20bright%20to%20focus%20on%20the%20educational%20content.&width=400&height=300&seq=mod5&orientation=landscape" alt="Fruits Module" class="w-full h-full object-cover object-top">
+                        <div class="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">Pemula</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-lg font-bold text-gray-800">Buah-buahan</h3>
+                            <div class="flex space-x-1">
+                                <div class="w-4 h-4 flex items-center justify-center text-yellow-500">
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                                <span class="text-sm text-gray-600">4.8</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Mengenal nama-nama buah dalam bahasa Inggris dengan gambar dan pengucapan.</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-600">Progress</span>
+                                <span class="text-gray-600 font-medium">0%</span>
+                            </div>
+                            <div class="progress-bar bg-gray-200">
+                                <div class="progress-fill bg-primary" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <button class="w-full bg-primary hover:bg-primary/90 text-white py-2 rounded-button whitespace-nowrap transition-colors">Mulai</button>
+                    </div>
+                </div>
+                
+                <!-- Module 6 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://readdy.ai/api/search-image?query=Colorful%20cartoon%20illustration%20showing%20simple%20greetings%20in%20English%20with%20characters%20demonstrating%20them.%20The%20image%20shows%20children%20saying%20Hello%2C%20Good%20morning%2C%20Good%20afternoon%2C%20Good%20evening%2C%20How%20are%20you%3F%2C%20and%20Goodbye.%20Each%20greeting%20is%20clearly%20labeled%20in%20English.%20The%20illustration%20style%20is%20friendly%20and%20educational%2C%20designed%20for%20elementary%20school%20children%20learning%20basic%20English%20greetings.%20The%20background%20is%20simple%20and%20bright.&width=400&height=300&seq=mod6&orientation=landscape" alt="Greetings Module" class="w-full h-full object-cover object-top">
+                        <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">Menengah</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-lg font-bold text-gray-800">Salam & Sapaan</h3>
+                            <div class="flex space-x-1">
+                                <div class="w-4 h-4 flex items-center justify-center text-yellow-500">
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                                <span class="text-sm text-gray-600">4.9</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Belajar berbagai salam dan sapaan dalam bahasa Inggris untuk percakapan sehari-hari.</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-600">Progress</span>
+                                <span class="text-primary font-medium">90%</span>
+                            </div>
+                            <div class="progress-bar bg-gray-200">
+                                <div class="progress-fill bg-primary" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <button class="w-full bg-primary hover:bg-primary/90 text-white py-2 rounded-button whitespace-nowrap transition-colors">Lanjutkan</button>
+                    </div>
+                </div>
+                
+                <!-- Module 7 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://readdy.ai/api/search-image?query=Colorful%20cartoon%20illustration%20showing%20various%20school%20items%20with%20their%20English%20names%20clearly%20labeled%20%28book%2C%20pencil%2C%20pen%2C%20eraser%2C%20ruler%2C%20backpack%2C%20notebook%29.%20The%20image%20has%20a%20clean%2C%20educational%20style%20suitable%20for%20elementary%20school%20children%20learning%20English%20vocabulary%20about%20school%20supplies.%20Each%20item%20is%20drawn%20in%20a%20cartoon%20style%20with%20vibrant%20colors.%20The%20background%20is%20simple%20and%20bright%20to%20focus%20on%20the%20educational%20content.&width=400&height=300&seq=mod7&orientation=landscape" alt="School Items Module" class="w-full h-full object-cover object-top">
+                        <div class="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">Pemula</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-lg font-bold text-gray-800">Peralatan Sekolah</h3>
+                            <div class="flex space-x-1">
+                                <div class="w-4 h-4 flex items-center justify-center text-yellow-500">
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                                <span class="text-sm text-gray-600">4.7</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Mengenal nama-nama peralatan sekolah dalam bahasa Inggris dengan gambar interaktif.</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-600">Progress</span>
+                                <span class="text-primary font-medium">60%</span>
+                            </div>
+                            <div class="progress-bar bg-gray-200">
+                                <div class="progress-fill bg-primary" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        <button class="w-full bg-primary hover:bg-primary/90 text-white py-2 rounded-button whitespace-nowrap transition-colors">Lanjutkan</button>
+                    </div>
+                </div>
+                
+                <!-- Module 8 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://readdy.ai/api/search-image?query=Colorful%20cartoon%20illustration%20showing%20various%20weather%20conditions%20with%20their%20English%20names%20clearly%20labeled%20%28sunny%2C%20rainy%2C%20cloudy%2C%20windy%2C%20snowy%29.%20The%20image%20has%20a%20clean%2C%20educational%20style%20suitable%20for%20elementary%20school%20children%20learning%20English%20vocabulary%20about%20weather.%20Each%20weather%20condition%20is%20illustrated%20with%20appropriate%20scenes%20and%20symbols.%20The%20background%20is%20divided%20into%20sections%20to%20show%20different%20weather%20types%20clearly.&width=400&height=300&seq=mod8&orientation=landscape" alt="Weather Module" class="w-full h-full object-cover object-top">
+                        <div class="absolute top-3 right-3 bg-purple-500 text-white text-xs px-2 py-1 rounded-full">Lanjutan</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-lg font-bold text-gray-800">Cuaca</h3>
+                            <div class="flex space-x-1">
+                                <div class="w-4 h-4 flex items-center justify-center text-yellow-500">
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                                <span class="text-sm text-gray-600">4.8</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Belajar tentang berbagai kondisi cuaca dan musim dalam bahasa Inggris.</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-600">Progress</span>
+                                <span class="text-gray-600 font-medium">0%</span>
+                            </div>
+                            <div class="progress-bar bg-gray-200">
+                                <div class="progress-fill bg-primary" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <button class="w-full bg-primary hover:bg-primary/90 text-white py-2 rounded-button whitespace-nowrap transition-colors">Mulai</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-10">
+                <button class="bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 px-6 py-3 rounded-button whitespace-nowrap transition-colors flex items-center mx-auto">
+                    <span>Lihat Semua Modul</span>
+                    <div class="w-5 h-5 flex items-center justify-center ml-2">
+                        <i class="ri-arrow-right-line"></i>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- VR Simulation Section -->
+    <section id="vr" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Simulasi Virtual Reality</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Berlatih bahasa Inggris dalam lingkungan virtual yang realistis untuk pengalaman belajar yang lebih mendalam</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- VR Environment 1 -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=A%20virtual%20reality%20scene%20of%20a%20traditional%20market%20in%20Indonesia%20with%20various%20food%20stalls%2C%20fruits%2C%20vegetables%2C%20and%20people%20shopping.%20The%20scene%20is%20designed%20as%20an%20educational%20VR%20environment%20for%20children%20learning%20English%2C%20with%20some%20English%20labels%20visible%20on%20items.%20The%20style%20is%20realistic%20but%20slightly%20stylized%20to%20be%20appropriate%20for%20elementary%20school%20children.%20The%20perspective%20shows%20the%20market%20from%20a%20first-person%20view%20as%20if%20the%20user%20is%20standing%20in%20the%20market.&width=600&height=400&seq=vr1&orientation=landscape" alt="Market VR" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">Pasar Tradisional</h3>
+                            <div class="bg-green-100 text-green-600 text-xs px-2 py-1 rounded-full flex items-center">
+                                <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                    <i class="ri-user-line"></i>
+                                </div>
+                                <span>24 aktif</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6">Berlatih percakapan tentang jual beli, nama buah, sayur, dan makanan dalam bahasa Inggris di lingkungan pasar.</p>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 flex items-center justify-center bg-yellow-100 text-yellow-600 rounded-full mr-3">
+                                    <i class="ri-vr-line"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-800">Level Pemula</p>
+                                    <p class="text-xs text-gray-500">Kosakata dasar</p>
+                                </div>
+                            </div>
+                            <div class="flex space-x-1">
+                                <div class="w-4 h-4 flex items-center justify-center text-yellow-500">
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                                <span class="text-sm text-gray-600">4.7</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-button whitespace-nowrap transition-colors flex items-center justify-center">
+                            <div class="w-5 h-5 flex items-center justify-center mr-2">
+                                <i class="ri-vr-line"></i>
+                            </div>
+                            <span>Masuk ke VR</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- VR Environment 2 -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=A%20virtual%20reality%20scene%20of%20an%20elementary%20school%20classroom%20in%20Indonesia%20with%20desks%2C%20chairs%2C%20blackboard%2C%20educational%20posters%20with%20English%20words%2C%20and%20some%20students.%20The%20scene%20is%20designed%20as%20an%20educational%20VR%20environment%20for%20children%20learning%20English%2C%20with%20English%20labels%20visible%20on%20classroom%20objects.%20The%20style%20is%20realistic%20but%20slightly%20stylized%20to%20be%20appropriate%20for%20elementary%20school%20children.%20The%20perspective%20shows%20the%20classroom%20from%20a%20first-person%20view%20as%20if%20the%20user%20is%20standing%20in%20the%20classroom.&width=600&height=400&seq=vr2&orientation=landscape" alt="Classroom VR" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">Ruang Kelas</h3>
+                            <div class="bg-green-100 text-green-600 text-xs px-2 py-1 rounded-full flex items-center">
+                                <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                    <i class="ri-user-line"></i>
+                                </div>
+                                <span>18 aktif</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6">Berlatih percakapan di kelas, belajar nama-nama peralatan sekolah, dan berinteraksi dengan guru virtual.</p>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 flex items-center justify-center bg-blue-100 text-blue-600 rounded-full mr-3">
+                                    <i class="ri-vr-line"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-800">Level Menengah</p>
+                                    <p class="text-xs text-gray-500">Percakapan dasar</p>
+                                </div>
+                            </div>
+                            <div class="flex space-x-1">
+                                <div class="w-4 h-4 flex items-center justify-center text-yellow-500">
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                                <span class="text-sm text-gray-600">4.9</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-button whitespace-nowrap transition-colors flex items-center justify-center">
+                            <div class="w-5 h-5 flex items-center justify-center mr-2">
+                                <i class="ri-vr-line"></i>
+                            </div>
+                            <span>Masuk ke VR</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- VR Environment 3 -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=A%20virtual%20reality%20scene%20of%20a%20playground%20in%20Indonesia%20with%20swings%2C%20slides%2C%20seesaw%2C%20and%20children%20playing.%20The%20scene%20is%20designed%20as%20an%20educational%20VR%20environment%20for%20children%20learning%20English%2C%20with%20English%20labels%20visible%20on%20playground%20equipment%20and%20activities.%20The%20style%20is%20realistic%20but%20slightly%20stylized%20to%20be%20appropriate%20for%20elementary%20school%20children.%20The%20perspective%20shows%20the%20playground%20from%20a%20first-person%20view%20as%20if%20the%20user%20is%20standing%20in%20the%20playground%20on%20a%20sunny%20day.&width=600&height=400&seq=vr3&orientation=landscape" alt="Playground VR" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">Taman Bermain</h3>
+                            <div class="bg-green-100 text-green-600 text-xs px-2 py-1 rounded-full flex items-center">
+                                <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                    <i class="ri-user-line"></i>
+                                </div>
+                                <span>32 aktif</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6">Berlatih percakapan tentang permainan, hobi, dan aktivitas di luar ruangan dalam bahasa Inggris.</p>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 flex items-center justify-center bg-purple-100 text-purple-600 rounded-full mr-3">
+                                    <i class="ri-vr-line"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-800">Level Lanjutan</p>
+                                    <p class="text-xs text-gray-500">Percakapan kompleks</p>
+                                </div>
+                            </div>
+                            <div class="flex space-x-1">
+                                <div class="w-4 h-4 flex items-center justify-center text-yellow-500">
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                                <span class="text-sm text-gray-600">4.8</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-button whitespace-nowrap transition-colors flex items-center justify-center">
+                            <div class="w-5 h-5 flex items-center justify-center mr-2">
+                                <i class="ri-vr-line"></i>
+                            </div>
+                            <span>Masuk ke VR</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- VR Guide -->
+            <div class="mt-16 bg-gray-50 rounded-xl p-8 shadow-sm">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Cara Menggunakan VR</h3>
+                        <p class="text-gray-600 mb-6">Ikuti langkah-langkah berikut untuk memulai pengalaman belajar dengan Virtual Reality:</p>
+                        <div class="space-y-4">
+                            <div class="flex">
+                                <div class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full mr-4 flex-shrink-0">1</div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800 mb-1">Siapkan Perangkat VR</h4>
+                                    <p class="text-sm text-gray-600">Pastikan headset VR Anda terhubung dengan benar ke komputer atau smartphone.</p>
+                                </div>
+                            </div>
+                            <div class="flex">
+                                <div class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full mr-4 flex-shrink-0">2</div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800 mb-1">Pilih Lingkungan VR</h4>
+                                    <p class="text-sm text-gray-600">Pilih salah satu lingkungan VR yang tersedia sesuai dengan level dan topik yang ingin dipelajari.</p>
+                                </div>
+                            </div>
+                            <div class="flex">
+                                <div class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full mr-4 flex-shrink-0">3</div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800 mb-1">Ikuti Tutorial</h4>
+                                    <p class="text-sm text-gray-600">Ikuti tutorial singkat tentang cara berinteraksi dalam lingkungan VR.</p>
+                                </div>
+                            </div>
+                            <div class="flex">
+                                <div class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full mr-4 flex-shrink-0">4</div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800 mb-1">Mulai Berinteraksi</h4>
+                                    <p class="text-sm text-gray-600">Berinteraksilah dengan objek dan karakter virtual untuk berlatih bahasa Inggris.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2">
+                        <img src="https://readdy.ai/api/search-image?query=A%20child%20wearing%20a%20VR%20headset%20while%20learning%20English%20in%20a%20virtual%20environment.%20The%20image%20shows%20both%20the%20real%20child%20wearing%20the%20headset%20and%20a%20partial%20view%20of%20what%20theyre%20seeing%20in%20VR%20%28English%20learning%20environment%20with%20labels%29.%20The%20scene%20is%20bright%2C%20educational%2C%20and%20shows%20the%20technology%20being%20used%20in%20a%20safe%2C%20supervised%20setting.%20The%20style%20is%20realistic%20but%20appropriate%20for%20educational%20content%20about%20VR%20learning%20for%20elementary%20school%20children.&width=600&height=400&seq=vrguide&orientation=landscape" alt="VR Guide" class="w-full rounded-xl">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Dashboard Section -->
+    <section id="progress" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Progress Belajar</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Pantau perkembangan belajar Anda dengan dashboard yang informatif dan sistem penghargaan yang memotivasi</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Progress Chart -->
+                <div class="bg-white rounded-xl shadow-sm p-6 lg:col-span-2">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold text-gray-800">Progres Mingguan</h3>
+                        <div class="relative">
+                            <button class="flex items-center text-gray-700 hover:text-primary transition-colors text-sm">
+                                <span class="mr-1">Minggu Ini</span>
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-arrow-down-s-line"></i>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="progressChart" class="w-full h-80"></div>
+                </div>
+                
+                <!-- Achievement Badges -->
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">Lencana Prestasi</h3>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="flex flex-col items-center">
+                            <div class="badge bg-yellow-100 rounded-full flex items-center justify-center mb-2">
+                                <div class="w-10 h-10 flex items-center justify-center text-yellow-500">
+                                    <i class="ri-star-fill ri-2x"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs text-center text-gray-600">Pemula</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="badge bg-blue-100 rounded-full flex items-center justify-center mb-2">
+                                <div class="w-10 h-10 flex items-center justify-center text-blue-500">
+                                    <i class="ri-book-fill ri-2x"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs text-center text-gray-600">Rajin Belajar</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="badge bg-green-100 rounded-full flex items-center justify-center mb-2">
+                                <div class="w-10 h-10 flex items-center justify-center text-green-500">
+                                    <i class="ri-calendar-check-fill ri-2x"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs text-center text-gray-600">7 Hari Berturut</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="badge bg-purple-100 rounded-full flex items-center justify-center mb-2">
+                                <div class="w-10 h-10 flex items-center justify-center text-purple-500">
+                                    <i class="ri-vr-fill ri-2x"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs text-center text-gray-600">VR Master</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="badge bg-gray-100 rounded-full flex items-center justify-center mb-2">
+                                <div class="w-10 h-10 flex items-center justify-center text-gray-400">
+                                    <i class="ri-lock-fill ri-2x"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs text-center text-gray-400">Terkunci</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="badge bg-gray-100 rounded-full flex items-center justify-center mb-2">
+                                <div class="w-10 h-10 flex items-center justify-center text-gray-400">
+                                    <i class="ri-lock-fill ri-2x"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs text-center text-gray-400">Terkunci</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Leaderboard -->
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">Papan Peringkat</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center p-3 bg-yellow-50 rounded-lg">
+                            <div class="w-8 h-8 flex items-center justify-center bg-yellow-500 text-white rounded-full mr-3 flex-shrink-0">1</div>
+                            <div class="w-10 h-10 bg-blue-100 rounded-full mr-3 flex-shrink-0 overflow-hidden">
+                                <img src="https://readdy.ai/api/search-image?query=Cartoon%20avatar%20of%20an%20Indonesian%20elementary%20school%20boy%20with%20a%20friendly%20smile%2C%20simple%20style%20suitable%20for%20a%20profile%20picture%2C%20educational%20app%20context&width=100&height=100&seq=avatar1&orientation=squarish" alt="Avatar" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex-grow">
+                                <h4 class="font-medium text-gray-800">Budi Santoso</h4>
+                                <p class="text-xs text-gray-500">Kelas 5 SD</p>
+                            </div>
+                            <div class="flex items-center text-yellow-500">
+                                <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                                <span class="font-bold">950</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                            <div class="w-8 h-8 flex items-center justify-center bg-gray-400 text-white rounded-full mr-3 flex-shrink-0">2</div>
+                            <div class="w-10 h-10 bg-pink-100 rounded-full mr-3 flex-shrink-0 overflow-hidden">
+                                <img src="https://readdy.ai/api/search-image?query=Cartoon%20avatar%20of%20an%20Indonesian%20elementary%20school%20girl%20with%20a%20friendly%20smile%2C%20simple%20style%20suitable%20for%20a%20profile%20picture%2C%20educational%20app%20context&width=100&height=100&seq=avatar2&orientation=squarish" alt="Avatar" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex-grow">
+                                <h4 class="font-medium text-gray-800">Siti Nurhaliza</h4>
+                                <p class="text-xs text-gray-500">Kelas 4 SD</p>
+                            </div>
+                            <div class="flex items-center text-yellow-500">
+                                <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                                <span class="font-bold">820</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                            <div class="w-8 h-8 flex items-center justify-center bg-orange-400 text-white rounded-full mr-3 flex-shrink-0">3</div>
+                            <div class="w-10 h-10 bg-green-100 rounded-full mr-3 flex-shrink-0 overflow-hidden">
+                                <img src="https://readdy.ai/api/search-image?query=Cartoon%20avatar%20of%20an%20Indonesian%20elementary%20school%20boy%20with%20glasses%20and%20a%20friendly%20smile%2C%20simple%20style%20suitable%20for%20a%20profile%20picture%2C%20educational%20app%20context&width=100&height=100&seq=avatar3&orientation=squarish" alt="Avatar" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex-grow">
+                                <h4 class="font-medium text-gray-800">Rendi Wijaya</h4>
+                                <p class="text-xs text-gray-500">Kelas 6 SD</p>
+                            </div>
+                            <div class="flex items-center text-yellow-500">
+                                <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                                <span class="font-bold">780</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                            <div class="w-8 h-8 flex items-center justify-center bg-blue-500 text-white rounded-full mr-3 flex-shrink-0">7</div>
+                            <div class="w-10 h-10 bg-purple-100 rounded-full mr-3 flex-shrink-0 overflow-hidden">
+                                <img src="https://readdy.ai/api/search-image?query=Cartoon%20avatar%20of%20an%20Indonesian%20elementary%20school%20girl%20with%20hijab%20and%20a%20friendly%20smile%2C%20simple%20style%20suitable%20for%20a%20profile%20picture%2C%20educational%20app%20context&width=100&height=100&seq=avatar4&orientation=squarish" alt="Avatar" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex-grow">
+                                <h4 class="font-medium text-gray-800">Anda</h4>
+                                <p class="text-xs text-gray-500">Kelas 5 SD</p>
+                            </div>
+                            <div class="flex items-center text-yellow-500">
+                                <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                                <span class="font-bold">650</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recommended Modules -->
+                <div class="bg-white rounded-xl shadow-sm p-6 lg:col-span-2">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">Rekomendasi untuk Anda</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="flex bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors">
+                            <div class="w-12 h-12 flex items-center justify-center bg-blue-100 text-blue-500 rounded-lg mr-4 flex-shrink-0">
+                                <i class="ri-restaurant-line ri-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-1">Makanan & Minuman</h4>
+                                <p class="text-xs text-gray-500 mb-2">Belajar nama makanan dan minuman dalam bahasa Inggris.</p>
+                                <div class="flex items-center text-primary text-sm">
+                                    <span class="mr-1">Mulai</span>
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-arrow-right-line"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors">
+                            <div class="w-12 h-12 flex items-center justify-center bg-green-100 text-green-500 rounded-lg mr-4 flex-shrink-0">
+                                <i class="ri-time-line ri-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-1">Waktu & Jam</h4>
+                                <p class="text-xs text-gray-500 mb-2">Belajar membaca dan menyebutkan waktu dalam bahasa Inggris.</p>
+                                <div class="flex items-center text-primary text-sm">
+                                    <span class="mr-1">Mulai</span>
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-arrow-right-line"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors">
+                            <div class="w-12 h-12 flex items-center justify-center bg-purple-100 text-purple-500 rounded-lg mr-4 flex-shrink-0">
+                                <i class="ri-body-scan-line ri-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-1">Anggota Tubuh</h4>
+                                <p class="text-xs text-gray-500 mb-2">Belajar nama-nama anggota tubuh dalam bahasa Inggris.</p>
+                                <div class="flex items-center text-primary text-sm">
+                                    <span class="mr-1">Mulai</span>
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-arrow-right-line"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors">
+                            <div class="w-12 h-12 flex items-center justify-center bg-orange-100 text-orange-500 rounded-lg mr-4 flex-shrink-0">
+                                <i class="ri-home-4-line ri-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-1">Rumah & Perabotan</h4>
+                                <p class="text-xs text-gray-500 mb-2">Belajar nama-nama ruangan dan perabotan rumah dalam bahasa Inggris.</p>
+                                <div class="flex items-center text-primary text-sm">
+                                    <span class="mr-1">Mulai</span>
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-arrow-right-line"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-primary">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-white mb-6">Siap Memulai Petualangan Belajar?</h2>
+            <p class="text-white/80 max-w-2xl mx-auto mb-8">Bergabunglah dengan ribuan siswa SD di Indonesia yang telah merasakan manfaat belajar bahasa Inggris dengan teknologi VR.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="bg-white hover:bg-gray-100 text-primary px-6 py-3 text-lg rounded-button whitespace-nowrap transition-colors">Daftar Sekarang</button>
+                <button class="bg-transparent border border-white hover:bg-white/10 text-white px-6 py-3 text-lg rounded-button whitespace-nowrap transition-colors">Hubungi Kami</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <a href="#" class="text-3xl font-['Pacifico'] text-white mb-6 inline-block">EnglishVR</a>
+                    <p class="text-gray-400 mb-6">Platform pembelajaran bahasa Inggris interaktif dengan teknologi VR untuk siswa SD di Indonesia.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 hover:bg-primary rounded-full transition-colors">
+                            <i class="ri-facebook-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 hover:bg-primary rounded-full transition-colors">
+                            <i class="ri-instagram-line"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 hover:bg-primary rounded-full transition-colors">
+                            <i class="ri-youtube-line"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 hover:bg-primary rounded-full transition-colors">
+                            <i class="ri-twitter-x-line"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Tautan</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Beranda</a></li>
+                        <li><a href="#modules" class="text-gray-400 hover:text-white transition-colors">Modul Pembelajaran</a></li>
+                        <li><a href="#vr" class="text-gray-400 hover:text-white transition-colors">Simulasi VR</a></li>
+                        <li><a href="#progress" class="text-gray-400 hover:text-white transition-colors">Progress Belajar</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Bantuan</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Kontak</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center mt-0.5 mr-3 text-gray-400">
+                                <i class="ri-map-pin-line"></i>
+                            </div>
+                            <span class="text-gray-400">Jl. Pendidikan No. 123, Jakarta Selatan, Indonesia</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center mr-3 text-gray-400">
+                                <i class="ri-phone-line"></i>
+                            </div>
+                            <span class="text-gray-400">+62 21 1234 5678</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center mr-3 text-gray-400">
+                                <i class="ri-mail-line"></i>
+                            </div>
+                            <span class="text-gray-400">info@englishvr.id</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Berlangganan</h3>
+                    <p class="text-gray-400 mb-4">Dapatkan informasi terbaru tentang fitur dan modul baru.</p>
+                    <div class="flex mb-4">
+                        <input type="email" placeholder="Email Anda" class="bg-gray-700 text-white px-4 py-2 rounded-l-lg border-none flex-grow focus:ring-2 focus:ring-primary/50">
+                        <button class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-r-lg whitespace-nowrap transition-colors">Langganan</button>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="newsletter" class="custom-checkbox">
+                        <label for="newsletter" class="text-gray-400 text-sm">Saya setuju menerima email marketing</label>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 EnglishVR. Hak Cipta Dilindungi.</p>
+                    <div class="flex space-x-4 text-sm">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">Syarat & Ketentuan</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">Kebijakan Privasi</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">Bantuan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    <script id="progressChartScript">
+        document.addEventListener('DOMContentLoaded', function() {
+            const chartDom = document.getElementById('progressChart');
+            const myChart = echarts.init(chartDom);
+            const option = {
+                animation: false,
+                tooltip: {
+                    trigger: 'axis',
+                    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                    textStyle: {
+                        color: '#1f2937'
+                    }
+                },
+                legend: {
+                    data: ['Waktu Belajar', 'Modul Selesai', 'Skor Quiz'],
+                    textStyle: {
+                        color: '#1f2937'
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
+                    axisLine: {
+                        lineStyle: {
+                            color: '#d1d5db'
+                        }
+                    },
+                    axisLabel: {
+                        color: '#1f2937'
+                    }
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLine: {
+                        lineStyle: {
+                            color: '#d1d5db'
+                        }
+                    },
+                    axisLabel: {
+                        color: '#1f2937'
+                    },
+                    splitLine: {
+                        lineStyle: {
+                            color: '#e5e7eb'
+                        }
+                    }
+                },
+                series: [
+                    {
+                        name: 'Waktu Belajar',
+                        type: 'line',
+                        smooth: true,
+                        lineStyle: {
+                            width: 3,
+                            color: 'rgba(87, 181, 231, 1)'
+                        },
+                        areaStyle: {
+                            color: {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [{
+                                    offset: 0, color: 'rgba(87, 181, 231, 0.2)'
+                                }, {
+                                    offset: 1, color: 'rgba(87, 181, 231, 0.01)'
+                                }]
+                            }
+                        },
+                        symbol: 'none',
+                        data: [30, 45, 35, 50, 40, 60, 70]
+                    },
+                    {
+                        name: 'Modul Selesai',
+                        type: 'line',
+                        smooth: true,
+                        lineStyle: {
+                            width: 3,
+                            color: 'rgba(141, 211, 199, 1)'
+                        },
+                        areaStyle: {
+                            color: {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [{
+                                    offset: 0, color: 'rgba(141, 211, 199, 0.2)'
+                                }, {
+                                    offset: 1, color: 'rgba(141, 211, 199, 0.01)'
+                                }]
+                            }
+                        },
+                        symbol: 'none',
+                        data: [2, 1, 3, 2, 1, 4, 3]
+                    },
+                    {
+                        name: 'Skor Quiz',
+                        type: 'line',
+                        smooth: true,
+                        lineStyle: {
+                            width: 3,
+                            color: 'rgba(251, 191, 114, 1)'
+                        },
+                        areaStyle: {
+                            color: {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [{
+                                    offset: 0, color: 'rgba(251, 191, 114, 0.2)'
+                                }, {
+                                    offset: 1, color: 'rgba(251, 191, 114, 0.01)'
+                                }]
+                            }
+                        },
+                        symbol: 'none',
+                        data: [75, 80, 70, 85, 90, 85, 95]
+                    }
+                ]
+            };
+            myChart.setOption(option);
+            
+            window.addEventListener('resize', function() {
+                myChart.resize();
+            });
+        });
+    </script>
+    <script id="checkboxScript">
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('.custom-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('click', function() {
+                    this.checked = !this.checked;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
